@@ -1,23 +1,55 @@
 package rikkei.academy.md3_case_study_filmjsp.model.videomodel;
 
-import java.time.LocalDate;
+import rikkei.academy.md3_case_study_filmjsp.model.categorymodel.Categories;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class Video {
     private int id;
     private String videoName;
-    private LocalDate dateByVideo;
+    private String dateByVideo;
     private String linkVideo;
     private String country;
+    private Set<Categories> categoriesSet = new HashSet<>();
 
-    public Video() {
+    public Video(String videoName, String dateByVideo, String country, Set<Categories> categoriesSet) {
+        this.videoName = videoName;
+        this.dateByVideo = dateByVideo;
+        this.country = country;
+        this.categoriesSet = categoriesSet;
+    }
+    public Video(int id, String videoName, String dateByVideo, String country) {
+        this.id = id;
+        this.videoName = videoName;
+        this.dateByVideo = dateByVideo;
+        this.country = country;
     }
 
-    public Video(int id, String videoName, LocalDate dateByVideo, String linkVideo, String country) {
+
+    public Video(int id, String videoName, String dateByVideo, String linkVideo,String country) {
         this.id = id;
         this.videoName = videoName;
         this.dateByVideo = dateByVideo;
         this.linkVideo = linkVideo;
         this.country = country;
+    }
+
+    public Video(int id, String videoName, Set<Categories> categoriesSet) {
+        this.id = id;
+        this.videoName = videoName;
+//        this.dateByVideo = dateByVideo;
+//        this.linkVideo = linkVideo;
+//        this.country = country;
+        this.categoriesSet = categoriesSet;
+    }
+
+    public Set<Categories> getCategoriesSet() {
+        return categoriesSet;
+    }
+
+    public void setCategoriesSet(Set<Categories> categoriesSet) {
+        this.categoriesSet = categoriesSet;
     }
 
     public int getId() {
@@ -36,11 +68,11 @@ public class Video {
         this.videoName = videoName;
     }
 
-    public LocalDate getDateByVideo() {
+    public String getDateByVideo() {
         return dateByVideo;
     }
 
-    public void setDateByVideo(LocalDate dateByVideo) {
+    public void setDateByVideo(String dateByVideo) {
         this.dateByVideo = dateByVideo;
     }
 

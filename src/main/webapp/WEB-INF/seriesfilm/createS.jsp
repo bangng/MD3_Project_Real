@@ -12,12 +12,12 @@
 </c:if>
 <form method="post">
     <label>
-        <input type="text" name="category" placeholder="thêm thể loại phim">
+        <input type="text" name="seriesName" placeholder="thêm tên cho phim bộ">
     </label>
     <button>Create</button>
 
 </form>
-<a href="cate?action=listC">Back To List Categories</a>
+<a href="series?action=listS">Back To List Series Film</a>
 
 </body>
 </html>

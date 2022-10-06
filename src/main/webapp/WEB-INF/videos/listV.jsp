@@ -18,14 +18,19 @@
             <th>Date</th>
             <th>Link</th>
             <th>Country</th>
+            <th>Category</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
         <c:forEach items='${requestScope["videoList"]}' var="v">
             <tr>
                 <td>${v.id}</td>
                 <td>${v.videoName}</td>
                 <td>${v.dateByVideo}</td>
-                <td>${v.link}</td>
+                <td>${v.linkVideo}</td>
                 <td>${v.country}</td>
+                <td>${v.categoriesSet}</td>
+
 
 
                 <td><a href="video?action=editV&id=${v.id}">Edit</a></td>
