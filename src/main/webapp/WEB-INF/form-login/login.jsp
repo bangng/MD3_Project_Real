@@ -46,14 +46,14 @@
 
                 <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
 
-                    <form style="width: 23rem;" method="post">
+
 
                         <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log in</h3>
 
                         <div class="form-outline mb-4">
                             <input name="username" type="text" id="form2Example18" class="form-control form-control-lg" />
                             <label class="form-label" for="form2Example18">Email address</label>
-                        </div>
+                        </div>  <form style="width: 23rem;" method="post">
 
                         <div class="form-outline mb-4">
                             <input name="password" type="password" id="form2Example28" class="form-control form-control-lg" />
