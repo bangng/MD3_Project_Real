@@ -12,6 +12,9 @@ import java.util.List;
 
 @WebServlet( value = {"/video"})
 public class VideoServlet extends HttpServlet {
+    public VideoServlet(){
+        super();
+    }
     private IVideoService videoService = new VideoServiceIMPL();
 
     @Override
@@ -57,12 +60,26 @@ public class VideoServlet extends HttpServlet {
         switch (action){
             case "createV":
                 actionCreateV(request,response);
-
                 break;
-
         }
     }
 
     private void actionCreateV(HttpServletRequest request, HttpServletResponse response) {
+    }
+    private void showAllVideo(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        int page = 1;
+        int recordsPerPage = 3;
+        if (request.getParameter("page") != null) {
+            page = Integer.parseInt(request.getParameter("page"));
+            VideoServiceIMPL serviceIMPL = new VideoServiceIMPL();
+            List<Video> videoList = serviceIMPL.viewAll((page - 1) * recordsPerPage, recordsPerPage);
+            int noOfRecords = serviceIMPL.getNoOfRecords();
+            int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+            request.setAttribute("videoList", videoList);
+            request.setAttribute("noOfPages", noOfPages);
+            request.setAttribute("currentPage", page);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/index.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 }
