@@ -58,24 +58,19 @@
 
 
         <div class= "row">
-            <div class ="col-12 col-sm-6 col-md-4 bg-primary"style="height: 100px;width: 180px">
+            <div class ="col-12 col-sm-6 col-md-4 bg-primary"style="height: 150px;width: 250px">
                 <p>.col-12 .col-sm-6 .col-md-4</p>
             </div>
-            <div class ="col-12 col-sm-6 col-md-4 bg-secondary"style="height: 100px;width: 180px">
+            <div class ="col-12 col-sm-6 col-md-4 bg-secondary"style="height: 150px;width: 250px">
                 <p>.col-12 .col-sm-6 .col-md-4</p>
             </div>
-            <div class ="col-12 col-sm-6 col-md-4 bg-danger"style="height: 100px;width: 180px">
+            <div class ="col-12 col-sm-6 col-md-4 bg-danger"style="height: 150px;width: 250px">
                 <p>.col-12 .col-sm-6 .col-md-4</p>
             </div>
-            <div class ="col-12 col-sm-6 col-md-4 bg-success"style="height: 100px;width: 180px">
+            <div class ="col-12 col-sm-6 col-md-4 bg-success"style="height: 150px;width: 250px">
                 <p>.col-12 .col-sm-6 .col-md-4</p>
             </div>
-            <div class ="col-12 col-sm-6 col-md-4 bg-info"style="height: 100px;width: 180px">
-                <p>.col-12 .col-sm-6 .col-md-4</p>
-            </div>
-            <div class ="col-12 col-sm-6 col-md-4 bg-dark"style="height: 100px;width: 180px">
-                <p>.col-12 .col-sm-6 .col-md-4</p>
-            </div>
+
         </div>
     </div>
     <br>
@@ -83,24 +78,19 @@
         <h4>Phim hành động</h4>
 
         <div class= "row">
-            <div class ="col-12 col-sm-6 col-md-4 bg-primary"style="height: 100px;width: 180px">
+            <div class ="col-12 col-sm-6 col-md-4 bg-primary"style="height: 150px;width: 250px">
                 <p>.col-12 .col-sm-6 .col-md-4</p>
             </div>
-            <div class ="col-12 col-sm-6 col-md-4 bg-secondary"style="height: 100px;width: 180px">
+            <div class ="col-12 col-sm-6 col-md-4 bg-secondary"style="height: 150px;width: 250px">
                 <p>.col-12 .col-sm-6 .col-md-4</p>
             </div>
-            <div class ="col-12 col-sm-6 col-md-4 bg-danger"style="height: 100px;width: 180px">
+            <div class ="col-12 col-sm-6 col-md-4 bg-danger"style="height: 150px;width: 250px">
                 <p>.col-12 .col-sm-6 .col-md-4</p>
             </div>
-            <div class ="col-12 col-sm-6 col-md-4 bg-success"style="height: 100px;width: 180px">
+            <div class ="col-12 col-sm-6 col-md-4 bg-success"style="height: 150px;width: 250px">
                 <p>.col-12 .col-sm-6 .col-md-4</p>
             </div>
-            <div class ="col-12 col-sm-6 col-md-4 bg-info"style="height: 100px;width: 180px">
-                <p>.col-12 .col-sm-6 .col-md-4</p>
-            </div>
-            <div class ="col-12 col-sm-6 col-md-4 bg-dark"style="height: 100px;width: 180px">
-                <p>.col-12 .col-sm-6 .col-md-4</p>
-            </div>
+
         </div>
     </div>
     <br>
@@ -108,24 +98,19 @@
         <h4>Phim hài</h4>
 
         <div class= "row">
-            <div class ="col-12 col-sm-6 col-md-4 bg-primary"style="height: 100px;width: 180px">
+            <div class ="col-12 col-sm-6 col-md-4 bg-primary"style="height: 150px;width: 250px">
                 <p>.col-12 .col-sm-6 .col-md-4</p>
             </div>
-            <div class ="col-12 col-sm-6 col-md-4 bg-secondary"style="height: 100px;width: 180px">
+            <div class ="col-12 col-sm-6 col-md-4 bg-secondary"style="height: 150px;width: 250px">
                 <p>.col-12 .col-sm-6 .col-md-4</p>
             </div>
-            <div class ="col-12 col-sm-6 col-md-4 bg-danger"style="height: 100px;width: 180px">
+            <div class ="col-12 col-sm-6 col-md-4 bg-danger"style="height: 150px;width: 250px">
                 <p>.col-12 .col-sm-6 .col-md-4</p>
             </div>
-            <div class ="col-12 col-sm-6 col-md-4 bg-success"style="height: 100px;width: 180px">
+            <div class ="col-12 col-sm-6 col-md-4 bg-success"style="height: 150px;width: 250px">
                 <p>.col-12 .col-sm-6 .col-md-4</p>
             </div>
-            <div class ="col-12 col-sm-6 col-md-4 bg-info"style="height: 100px;width: 180px">
-                <p>.col-12 .col-sm-6 .col-md-4</p>
-            </div>
-            <div class ="col-12 col-sm-6 col-md-4 bg-dark"style="height: 100px;width: 180px">
-                <p>.col-12 .col-sm-6 .col-md-4</p>
-            </div>
+
         </div>
     </div>
 
