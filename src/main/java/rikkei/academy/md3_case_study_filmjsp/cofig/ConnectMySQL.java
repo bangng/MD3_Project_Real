@@ -8,7 +8,7 @@ public class ConnectMySQL {
     private static Connection connection;
     private static final String URL = "jdbc:mysql://localhost:3306/form_login";
     private static final String USER = "root";
-    private static final String PASS = "123456";
+    private static final String PASS = "chinh2001";
     public static Connection getConnection(){
         try {
             Class.forName("com.mysql.jdbc.Driver");

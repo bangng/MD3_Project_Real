@@ -12,6 +12,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -40,7 +41,15 @@ public class UserServlet extends HttpServlet {
             case "change_avatar":
                 showUpLoadAvatar(request,response);
                 break;
+            case "change_password":
+                showChangePassword(request,response);
+                break;
         }
+    }
+
+    private void showChangePassword(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/profile/change_password.jsp");
+        dispatcher.forward(request,response);
     }
 
     @Override
@@ -62,8 +71,44 @@ public class UserServlet extends HttpServlet {
             case "change_avatar":
                 actionUpLoadAvatar(request,response);
                 break;
+            case "change_password":
+                try {
+                    updatePassword(request,response);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+            default:
+                System.out.println("default action");
         }
     }
+
+    private void updatePassword(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        User userlogin = (User) request.getSession().getAttribute("userlogin");
+        System.out.println(userlogin);
+        String oldPassword = request.getParameter("oldPassword");
+        String newPassword = request.getParameter("newPassword");
+        String repeatPassword = request.getParameter("repeatPassword");
+        if (!newPassword.equals(repeatPassword)){
+            request.setAttribute("message","Repeat password not match");
+            request.getRequestDispatcher("index.jsp").forward(request,response);
+
+            return;
+        }
+        if (!userService.findById(userlogin.getId()).getPassword().equals(oldPassword)){
+            request.setAttribute("message","Old password not match");
+            request.getRequestDispatcher("index.jsp").forward(request,response);
+            return;
+        }
+        userlogin.setPassword(newPassword);
+        userService.update(userlogin);
+        request.getSession().setAttribute("userlogin",userlogin);
+
+        request.setAttribute("success","change password success");
+        request.getRequestDispatcher("index.jsp").forward(request,response);
+
+    }
+
 
     public void destroy() {
     }
@@ -75,7 +120,7 @@ public class UserServlet extends HttpServlet {
     public void actionUpLoadAvatar(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         String avatar = request.getParameter("avatar");
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute("userlogin");
         int id = user.getId();
         userService.changeAvatar(id,avatar);
         request.setAttribute("avatar",avatar);
@@ -150,8 +195,8 @@ public class UserServlet extends HttpServlet {
         String pageJSP = "";
         if(user!=null){
             HttpSession session = request.getSession();
-            session.setAttribute("user", user);
-            System.out.println("get userlogin ---> "+session.getAttribute("user"));
+            session.setAttribute("userlogin", user);
+            System.out.println("get userlogin ---> "+session.getAttribute("userlogin"));
             pageJSP = "WEB-INF/profile/profile.jsp";
         } else {
             pageJSP = "WEB-INF/form-login/login.jsp";
@@ -164,7 +209,7 @@ public class UserServlet extends HttpServlet {
     public void logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(false);
         if(session!=null){
-            session.removeAttribute("user");
+            session.removeAttribute("userlogin");
             session.invalidate();
             response.sendRedirect("index.jsp");
         }

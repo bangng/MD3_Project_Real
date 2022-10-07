@@ -19,10 +19,11 @@ public class UserServiceIMPL implements IUserService{
     private final String INSERT_ROLE_ID_USER_ID = "INSERT INTO user_role(user_id,role_id) values (?,?);";
     private final String FIND_ALL_USERNAME = "SELECT username FROM users";
     private final String FIND_ALL_EMAIL = "SELECT email FROM users";
-    private final String FIND_BY_ID_USER = "SELECT name FROM users WHERE id=?;";
+    private final String FIND_BY_ID_USER = "SELECT name, password FROM users WHERE id=?;";
     private final String FIND_ROLE_BY_USER = "SELECT role_id FROM user_role WHERE user_id=?;";
     private final String FIND_BY_USERNAME_PASSWORD = "SELECT * FROM users WHERE username=?AND password=?";
     private final String CHANGE_AVATAR = "UPDATE users SET avatar = ? WHERE id = ?";
+    private final String CHANGE_PASSWORD = " update users set password = ? where id = ?";
     @Override
     public void save(User user) {
         try {
@@ -54,6 +55,17 @@ public class UserServiceIMPL implements IUserService{
             connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void update(User user) throws SQLException {
+        try(
+                PreparedStatement preparedStatement = connection.prepareStatement(CHANGE_PASSWORD)
+                ){
+            preparedStatement.setString(1,user.getPassword());
+            preparedStatement.setInt(2,user.getId());
+            preparedStatement.executeUpdate();
         }
     }
 
@@ -117,14 +129,16 @@ public class UserServiceIMPL implements IUserService{
             ResultSet resultSet1 = preparedStatement.executeQuery();
             while (resultSet1.next()){
                 String name = resultSet1.getString("name");
+                String password = resultSet1.getString("password");
                 user = new User(id,name,roles);
-                return user;
+                user.setPassword(password);
+
             }
             connection.commit();
+            return user;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 
     @Override
@@ -151,8 +165,8 @@ public class UserServiceIMPL implements IUserService{
         try {
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(CHANGE_AVATAR);
-            preparedStatement.setInt(2,id);
-            preparedStatement.setString(1,avatar);
+            preparedStatement.setInt(1,id);
+            preparedStatement.setString(2,avatar);
             preparedStatement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
