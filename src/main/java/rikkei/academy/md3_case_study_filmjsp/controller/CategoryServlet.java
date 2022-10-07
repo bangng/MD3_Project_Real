@@ -8,9 +8,10 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(value = {"/", "/cate"})
+@WebServlet(value = {"/cate"})
 public class CategoryServlet extends HttpServlet {
     private ICategoryService categorySerVice = new CategoryServiceIMPL();
 
@@ -86,7 +87,11 @@ public class CategoryServlet extends HttpServlet {
         }
         switch (action) {
             case "createC":
-                actionCreateC(request, response);
+                try {
+                    actionCreateC(request, response);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case "editC":
                 actionEditC(request,response);
@@ -106,9 +111,6 @@ public class CategoryServlet extends HttpServlet {
         request.setAttribute("categories",categorySerVice.findAll());
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/categories/listC.jsp");
         dispatcher.forward(request,response);
-
-
-
     }
 
     private void actionEditC(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -120,23 +122,18 @@ public class CategoryServlet extends HttpServlet {
         request.setAttribute("message","update success!!");
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/categories/editC.jsp");
         dispatcher.forward(request,response);
-
     }
 
-    private void actionCreateC(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void actionCreateC(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         String category = request.getParameter("category");
-
         Categories categories = new Categories(category);
         categories.setCategory(category);
         categorySerVice.save(categories);
-        System.out.println(categories);
         request.setAttribute("message", "Success");
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/categories/createC.jsp");
         dispatcher.forward(request, response);
-
-
     }
 
 }

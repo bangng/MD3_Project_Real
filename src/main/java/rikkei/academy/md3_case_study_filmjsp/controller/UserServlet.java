@@ -12,10 +12,11 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
-@WebServlet(value = "/users")
+@WebServlet(value = {"/", "/users"})
 public class UserServlet extends HttpServlet {
 
     private IRoleService roleService = new RoleServiceIMPL();
@@ -54,7 +55,11 @@ public class UserServlet extends HttpServlet {
         }
         switch (action){
             case "register":
-                actionRegister(request,response);
+                try {
+                    actionRegister(request,response);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case "login":
                 actionLogin(request,response);
@@ -88,7 +93,7 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/form-login/register.jsp");
         dispatcher.forward(request,response);
     }
-    public void actionRegister(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void actionRegister(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         String role = "user";
         Set<String> strRole = new HashSet<>();
         Set<Role> roles = new HashSet<>();

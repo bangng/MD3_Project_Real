@@ -67,25 +67,29 @@
                             <form method="post">
 
                                 <div class="form-outline mb-4">
-                                    <input type="text" name="name" id="form3Example1cg" class="form-control form-control-lg"/>
+                                    <input type="text" name="name" id="form3Example1cg"
+                                           class="form-control form-control-lg"/>
                                     <label class="form-label" for="form3Example1cg">Your Name</label>
                                 </div>
                                 <div class="form-outline mb-4">
-                                    <input type="text" name="username"  class="form-control form-control-lg"/>
+                                    <input type="text" name="username" class="form-control form-control-lg"/>
                                     <label class="form-label" for="form3Example1cg">Username</label>
                                 </div>
                                 <div class="form-outline mb-4">
-                                    <input  name="email" type="email" id="form3Example3cg" class="form-control form-control-lg"/>
+                                    <input name="email" type="email" id="form3Example3cg"
+                                           class="form-control form-control-lg"/>
                                     <label class="form-label" for="form3Example3cg">Your Email</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input name="password" type="password" id="form3Example4cg" class="form-control form-control-lg"/>
+                                    <input name="password" type="password" id="form3Example4cg"
+                                           class="form-control form-control-lg"/>
                                     <label class="form-label" for="form3Example4cg">Password</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input name="repeat_pass" type="password" id="form3Example4cdg" class="form-control form-control-lg"/>
+                                    <input name="repeat_pass" type="password" id="form3Example4cdg"
+                                           class="form-control form-control-lg"/>
                                     <label class="form-label" for="form3Example4cdg">Repeat your password</label>
                                 </div>
 
@@ -103,9 +107,7 @@
                                     </button>
                                 </div>
 
-                                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!"
-                                                                                                        class="fw-bold text-body"><u>Login
-                                    here</u></a></p>
+                                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!" class="fw-bold text-body"><u>Login here</u></a></p>
 
                             </form>
 

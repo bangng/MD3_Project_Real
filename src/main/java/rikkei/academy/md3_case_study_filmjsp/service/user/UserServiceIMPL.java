@@ -149,12 +149,12 @@ public class UserServiceIMPL implements IUserService{
     @Override
     public void changeAvatar(int id, String avatar) {
         try {
-            connection.setAutoCommit(false);
+
             PreparedStatement preparedStatement = connection.prepareStatement(CHANGE_AVATAR);
             preparedStatement.setInt(2,id);
             preparedStatement.setString(1,avatar);
             preparedStatement.executeUpdate();
-            connection.commit();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
