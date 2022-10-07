@@ -1,5 +1,8 @@
 package rikkei.academy.md3_case_study_filmjsp.controller;
 
+import rikkei.academy.md3_case_study_filmjsp.service.user.IUserService;
+import rikkei.academy.md3_case_study_filmjsp.service.user.UserServiceIMPL;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -7,6 +10,7 @@ import java.io.IOException;
 
 @WebServlet( name = "UploadVideoServlet", value = "/mp3" )
 public class ServletCreateMP3Controller extends HttpServlet {
+    IUserService userService = new UserServiceIMPL();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -40,7 +44,8 @@ public class ServletCreateMP3Controller extends HttpServlet {
     public void actionUploadMP3(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         String mp3 = request.getParameter("mp3");
         request.setAttribute("mp3",mp3);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        userService.createVideo(mp3);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/index.jsp");
         dispatcher.forward(request,response);
     }
 }

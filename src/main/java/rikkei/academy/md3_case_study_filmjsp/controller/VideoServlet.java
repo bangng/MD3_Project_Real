@@ -10,11 +10,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet( value = {"/video"})
+@WebServlet( value = {"/","/video"})
 public class VideoServlet extends HttpServlet {
-    public VideoServlet(){
-        super();
-    }
     private IVideoService videoService = new VideoServiceIMPL();
 
     @Override
@@ -22,6 +19,7 @@ public class VideoServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         String action = request.getParameter("action");
+        System.out.println("vao get");
         if (action == null){
             action = "";
         }
@@ -31,7 +29,7 @@ public class VideoServlet extends HttpServlet {
 
                 break;
             default:
-                showListVideo(request,response);
+                showAllVideo(request,response);
         }
     }
 
@@ -71,15 +69,16 @@ public class VideoServlet extends HttpServlet {
         int recordsPerPage = 3;
         if (request.getParameter("page") != null) {
             page = Integer.parseInt(request.getParameter("page"));
-            VideoServiceIMPL serviceIMPL = new VideoServiceIMPL();
-            List<Video> videoList = serviceIMPL.viewAll((page - 1) * recordsPerPage, recordsPerPage);
-            int noOfRecords = serviceIMPL.getNoOfRecords();
-            int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-            request.setAttribute("videoList", videoList);
-            request.setAttribute("noOfPages", noOfPages);
-            request.setAttribute("currentPage", page);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/index.jsp");
-            dispatcher.forward(request, response);
         }
+        VideoServiceIMPL serviceIMPL = new VideoServiceIMPL();
+        List<Video> videoList = serviceIMPL.viewAll((page - 1) * recordsPerPage, recordsPerPage);
+        int noOfRecords = serviceIMPL.getNoOfRecords();
+        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+        request.setAttribute("videoList", videoList);
+        request.setAttribute("noOfPages", noOfPages);
+        request.setAttribute("currentPage", page);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/index.jsp");
+        dispatcher.forward(request, response);
     }
 }

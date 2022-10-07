@@ -12,4 +12,6 @@ public interface IUserService extends IGenericService<User> {
     User findByUsernameAndPassword(String username, String password);
     void changeAvatar(int id,String avatar);
     void update(User user)throws SQLException;
+
+    void createVideo( String linkVideo);
 }

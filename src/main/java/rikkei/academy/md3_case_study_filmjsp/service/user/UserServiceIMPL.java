@@ -24,6 +24,8 @@ public class UserServiceIMPL implements IUserService{
     private final String FIND_BY_USERNAME_PASSWORD = "SELECT * FROM users WHERE username=?AND password=?";
     private final String CHANGE_AVATAR = "UPDATE users SET avatar = ? WHERE id = ?";
     private final String CHANGE_PASSWORD = " update users set password = ? where id = ?";
+
+    private final String CREATE_VIDEO="INSERT INTO video(linkVideo)values(?) ";
     @Override
     public void save(User user) {
         try {
@@ -67,6 +69,25 @@ public class UserServiceIMPL implements IUserService{
             preparedStatement.setInt(2,user.getId());
             preparedStatement.executeUpdate();
         }
+    }
+
+    @Override
+    public void createVideo(String linkVideo) {
+        try {
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(CREATE_VIDEO);
+
+
+            preparedStatement.setString(1,linkVideo);
+
+
+            preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (SQLException e) {
+
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override
@@ -165,11 +186,15 @@ public class UserServiceIMPL implements IUserService{
         try {
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(CHANGE_AVATAR);
-            preparedStatement.setInt(1,id);
-            preparedStatement.setString(2,avatar);
+
+
+            preparedStatement.setString(1,avatar);
+            preparedStatement.setInt(2,id);
+
             preparedStatement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
+
             throw new RuntimeException(e);
         }
     }

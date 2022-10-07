@@ -211,7 +211,8 @@ public class UserServlet extends HttpServlet {
         if(session!=null){
             session.removeAttribute("userlogin");
             session.invalidate();
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("WEB-INF/index.jsp");
         }
     }
+
 }

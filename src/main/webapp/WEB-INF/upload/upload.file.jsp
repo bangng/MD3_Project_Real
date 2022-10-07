@@ -13,7 +13,7 @@ To change this template use File | Settings | File Templates.
 <body>
 <form method="post">
     <progress value="0" max="100" id="uploader">0%</progress>
-    <input type="file" value="upload" accept=".jpg" id="fileButton">
+    <input type="file" value="upload" accept=".mp4" id="fileButton">
     <input type="text" name="mp3" id="mp3" style="display: none">
     <h1>Hello GFG</h1>
     <div id="imgDiv"></div>

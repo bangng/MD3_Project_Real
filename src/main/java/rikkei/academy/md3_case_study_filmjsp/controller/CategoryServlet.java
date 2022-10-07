@@ -10,7 +10,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(value = {"/", "/cate"})
+@WebServlet(value = {"/cate"})
 public class CategoryServlet extends HttpServlet {
     private ICategoryService categorySerVice = new CategoryServiceIMPL();
 

@@ -102,10 +102,10 @@ public class VideoServiceIMPL implements IVideoService{
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 video = new Video();
-                video.setVideoName("videoname");
-                video.setDateByVideo(LocalDate.parse("dateByvideo"));
-                video.setLinkVideo("linkVideo");
-                video.setCountry("country");
+                video.setVideoName(rs.getString("videoname"));
+                video.setDateByVideo(LocalDate.parse(rs.getString("dateByvideo")));
+                video.setLinkVideo(rs.getString("linkVideo"));
+                video.setCountry(rs.getString("country"));
                 list.add(video);
             }
             rs.close();
