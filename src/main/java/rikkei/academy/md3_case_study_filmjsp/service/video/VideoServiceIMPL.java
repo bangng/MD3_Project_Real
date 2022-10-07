@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VideoServiceIMPL implements IVideoService{
+    private  int noOfRecords;
+    Statement stmt;
     private ICategoryService categoryService = new CategoryServiceIMPL();
     private Connection connection = ConnectMySQL.getConnection();
     private final String CREATE_VIDEOS = "INSERT INTO video(videoName,country) VALUES (?,?);";
@@ -91,6 +93,43 @@ public class VideoServiceIMPL implements IVideoService{
 
     @Override
     public List<Video> viewAll(int offset, int noOfRecords) {
-        return null;
+        String query = "select SQL_CALC_FOUND_ROWS * from video limit "
+                + offset + ", " + noOfRecords;
+        List<Video> list = new ArrayList<Video>();
+        Video video = null;
+        try {
+            stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                video = new Video();
+                video.setVideoName("videoname");
+                video.setDateByVideo(LocalDate.parse("dateByvideo"));
+                video.setLinkVideo("linkVideo");
+                video.setCountry("country");
+                list.add(video);
+            }
+            rs.close();
+
+            rs = stmt.executeQuery("SELECT FOUND_ROWS()");
+            if(rs.next())
+                this.noOfRecords = rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally
+        {
+            try {
+                if(stmt != null)
+                    stmt.close();
+                if(connection != null)
+                    connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+
+    public int getNoOfRecords() {
+        return noOfRecords;
     }
 }
