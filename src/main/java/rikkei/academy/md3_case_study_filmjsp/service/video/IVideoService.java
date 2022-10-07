@@ -11,4 +11,5 @@ public interface IVideoService extends IGenericService<Video> {
     Video findById(int id);
     void updateCategory(Video videos);
     void remove(int id);
+    List<Video> viewAll(int offset , int noOfRecords);
 }

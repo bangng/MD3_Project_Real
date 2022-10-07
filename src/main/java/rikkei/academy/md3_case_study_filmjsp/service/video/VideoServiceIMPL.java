@@ -88,4 +88,9 @@ public class VideoServiceIMPL implements IVideoService{
     public void remove(int id) {
 
     }
+
+    @Override
+    public List<Video> viewAll(int offset, int noOfRecords) {
+        return null;
+    }
 }
